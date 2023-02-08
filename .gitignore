@@ -104,3 +104,5 @@ dist
 .vscode
 # VS Code Files
 .vscode/
+
+.fake
