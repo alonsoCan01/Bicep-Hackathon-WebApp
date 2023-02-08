@@ -1,9 +1,9 @@
-
+param location string = resourceGroup().location
 
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2020-06-01' = {
-  name: hackAppPlan
-  location: resourceGroup().location
+  name: 'hackAppPlan'
+  location: location
   sku: {
     name: 'F1'
   }
@@ -12,7 +12,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2020-06-01' = {
 
 resource appService 'Microsoft.Web/sites@2020-06-01' = {
   name: 'FrontEndApp$(uniqueString(resourceGroup().id))'
-  location: resourceGroup().location
+  location: location
   properties: {
     serverFarmId: appServicePlan.id
   }
