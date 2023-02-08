@@ -11,7 +11,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2020-06-01' = {
 }
 
 resource appService 'Microsoft.Web/sites@2020-06-01' = {
-  name: 'FrontEndApp$(uniqueString(resourceGroup().id))'
+  name: 'FrontEndApp$(uniqueString(resourceGroup().id))hjdkajh113'
   location: location
   properties: {
     serverFarmId: appServicePlan.id
