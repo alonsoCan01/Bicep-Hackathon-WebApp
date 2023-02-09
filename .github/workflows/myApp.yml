@@ -1,12 +1,12 @@
-name: Deploying
+name: deploy service
 on:
   workflow_dispatch:
   push:
     branches:
       - "main"
-    paths:
-      - ".github/workflows/myApp.yml"
-      - "infra/main.bicep"
+    # paths:
+    #   - ".github/workflows/myApp.yml"
+    #   - "infra/main.bicep"
 jobs:
   validate:
     name: validate

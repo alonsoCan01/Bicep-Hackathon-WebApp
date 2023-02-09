@@ -1,7 +1,7 @@
-name: deploy-frontend
+name: deploy frontend
 on: 
   workflow_run:
-    workflows: ["Deploying"]
+    workflows: ["deploying"]
     branches: ["main"]
     types:
       - completed
@@ -24,7 +24,7 @@ jobs:
           node-version: ${{env.NODE_VERSION}}
       - name: yarn install, build, and test
         run: | 
-          '../../src/frontend/'
+          cd ../../src/frontend/
           yarn install
           yarn run build
         working-directory: '../../src/frontend/'
