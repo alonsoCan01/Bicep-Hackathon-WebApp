@@ -24,10 +24,10 @@ jobs:
           node-version: ${{env.NODE_VERSION}}
       - name: yarn install, build, and test
         run: | 
-          cd ../../src/frontend/
+          cd src/frontend/
           yarn install
           yarn run build
-        working-directory: '../../src/frontend/'
+        working-directory: 'src/frontend/'
       - uses: azure/webapps-deploy@v2
         with:
           app-name: ${{env.AZURE_WEBAPP_NAME}}
