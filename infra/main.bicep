@@ -17,3 +17,20 @@ resource appService 'Microsoft.Web/sites@2020-06-01' = {
     serverFarmId: appServicePlan.id
   }
 }
+
+resource backendAppServicePlan 'Microsoft.Web/serverfarms@2020-06-01' = {
+  name: 'hackAppBackendPlan'
+  location: location
+  sku: {
+    name: 'F1'
+  }
+  kind: 'linux'
+}
+
+resource backendAppService 'Microsoft.Web/sites@2020-06-01' = {
+  name: 'hackAppBackend-eastus-A01'
+  location: location
+  properties: {
+    serverFarmId: backendAppServicePlan.id
+  }
+}
