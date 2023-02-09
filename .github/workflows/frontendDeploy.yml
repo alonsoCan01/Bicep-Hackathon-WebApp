@@ -24,7 +24,7 @@ jobs:
           node-version: ${{env.NODE_VERSION}}
       - name: yarn install, build, and test
         run: | 
-          cd ./src/frontend
+          cd src/frontend
           yarn install
           yarn run build
         working-directory: ./src/frontend
