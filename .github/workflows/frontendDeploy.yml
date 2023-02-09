@@ -8,7 +8,7 @@ on:
 env: 
   NODE_VERSION: '14.x'
   AZURE_WEBAPP_NAME: hackAppFrontend-eastus-A01
-  AZURE_WEBAPP_PACKAGE_PATH: '../../src/frontend/'
+  AZURE_WEBAPP_PACKAGE_PATH: 'src/frontend'
 jobs:
   deploy: 
     name: deploy
