@@ -28,7 +28,7 @@ jobs:
         run: |
           az logout
   build:
-    name: build-frontend
+    name: build-infra
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
@@ -36,7 +36,7 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: deploy
-        uses: azure/arm-deploy@v1
+        uses: azure/arm-deploy@v2
         with:
           scope: resourcegroup
           resourceGroupName: ${{ secrets.AZURE_RG }}
