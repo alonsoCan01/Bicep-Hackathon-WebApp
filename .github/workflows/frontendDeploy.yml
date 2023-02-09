@@ -1,7 +1,7 @@
 name: deploy frontend
 on: 
   workflow_run:
-    workflows: ["deploying"]
+    workflows: ["deploy service"]
     branches: ["main"]
     types:
       - completed
