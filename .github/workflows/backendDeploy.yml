@@ -23,8 +23,8 @@ jobs:
 
       - name: dotnet publish
         run: |
-          cd src/backend/api/
-          dotnet publish -c Release -o ./hack_backend_api
+
+          dotnet publish src/backend/api/api.csproj -c Release -o ./hack_backend_api
 
       - name: upload artifacts
         uses: actions/upload-artifact@v2
