@@ -28,6 +28,7 @@ jobs:
 
       - name: dotnet publish
         run: |
+          ls 
           cd src/backend/api/
           dotnet publish -c Release -o ./hack_backend_api
 
@@ -36,6 +37,8 @@ jobs:
         with:
           name: backend-api
           path: ./hack_backend_api
+          if-no-files-found: error
+          retention-days: 30
   deploy:
     name: deploy
     runs-on: ubuntu-latest
