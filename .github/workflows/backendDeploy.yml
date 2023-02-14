@@ -28,15 +28,14 @@ jobs:
 
       - name: dotnet publish
         run: |
-          ls 
           cd src/backend/api/
-          dotnet publish -c Release -o ./hack_backend_api
+          dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/hack_backend_api
 
       - name: upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: backend-api
-          path: ./hack_backend_api
+          path: ${{env.DOTNET_ROOT}}/hack_backend_api
           if-no-files-found: error
           retention-days: 30
   deploy:
