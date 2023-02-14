@@ -1,37 +1,36 @@
 name: deploy frontend
-on: 
+on:
   workflow_run:
     workflows: ["deploy service"]
     branches: ["main"]
     types:
       - completed
-env: 
-  NODE_VERSION: '14.x'
+env:
+  NODE_VERSION: "14.x"
   AZURE_WEBAPP_NAME: hackAppFrontend-eastus-A01
-  AZURE_WEBAPP_PACKAGE_PATH: 'src/frontend'
+  AZURE_WEBAPP_PACKAGE_PATH: "src/frontend"
 jobs:
-  deploy: 
-    name: deploy
+  build:
+    name: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
-      - uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
       - name: Use node.js ${{env.NODE_VERSION}}
         uses: actions/setup-node@v1
         with:
           node-version: ${{env.NODE_VERSION}}
-      - name: yarn install, build, and test
-        run: | 
-          cd ../../src/frontend/
+
+      - name: yarn install and build
+        run: |
+          cd src/frontend/
           yarn install
           yarn run build
-        working-directory: 'src/frontend/'
-      - uses: azure/webapps-deploy@v2
+
+      - name: uploading frontend artifact
+        uses: actions/upload-artifact@v2.2.4
         with:
-          app-name: ${{env.AZURE_WEBAPP_NAME}}
-          package: ${{env.AZURE_WEBAPP_PACKAGE_PATH}}
-      - name: logout
-        run: |
-          az logout
+          name: frontend-app
+          path: "src/frontend/build"
+          if-no-files-found: error
+          retention-days: 30
