@@ -49,12 +49,10 @@ jobs:
 
       - name: downloading artifact
         uses: actions/download-artifact@v2
-        with:
-          name: backend-api
 
       - name: deploy to azure web app
         id: deploy-to-web-app
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{env.AZURE_WEBAPP_NAME}}
-          package: backend-api
+          package: ./hack_backend_api
