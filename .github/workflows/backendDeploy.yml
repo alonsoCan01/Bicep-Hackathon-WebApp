@@ -15,6 +15,11 @@ jobs:
     steps:
       - uses: actions/checkout@main
 
+      - name: setup dotnet core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{env.DOTNET_VERSION}}
+
       - name: dotnet build on ${{env.DOTNET_VERSION}}
         run: |
           cd src/backend/api/
@@ -23,8 +28,8 @@ jobs:
 
       - name: dotnet publish
         run: |
-
-          dotnet publish src/backend/api/api.csproj -c Release -o ./hack_backend_api
+          cd src/backend/api/
+          dotnet publish -c Release -o ./hack_backend_api
 
       - name: upload artifacts
         uses: actions/upload-artifact@v2
